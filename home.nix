@@ -18,7 +18,6 @@ let
     { name = "Babashka"; bin = "bb";    pkg = pkgs.babashka;       file = ./hello/hello.bb;    run = f: "bb ${f}"; }
     { name = "Lisp";    bin = "sbcl";   pkg = pkgs.sbcl;           file = ./hello/hello.lisp;  run = f: "sbcl --script ${f}"; }
     { name = "Prolog";  bin = "swipl";  pkg = pkgs.swi-prolog;     file = ./hello/hello.pro;   run = f: "swipl ${f}"; }
-    { name = "Forth";   bin = "gforth"; pkg = pkgs.gforth;         file = ./hello/hello.fs;    run = f: "gforth ${f}"; }
     { name = "OCaml";   bin = "ocaml";  pkg = pkgs.ocaml;          file = ./hello/hello.ml;    run = f: "ocaml ${f}"; }
     { name = "Rust";    bin = "rustc";  pkg = pkgs.rustc;          file = ./hello/hello.rs;    run = f: "rustc ${f} -o $tmp/r && $tmp/r"; }
     { name = "COBOL";   bin = "cobc";   pkg = pkgs.gnucobol;       file = ./hello/hello.cob;   run = f: "cobc -x -free ${f} -o $tmp/cb && $tmp/cb"; }
@@ -28,6 +27,7 @@ let
 
   helloAll = pkgs.writeShellApplication {
     name = "hello-all";
+    excludeShellChecks = [ "SC2016" ];
     runtimeInputs = (map (l: l.pkg) langs) ++ [ pkgs.coreutils ];
     text = ''
       tmp=$(mktemp -d)
