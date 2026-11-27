@@ -1,5 +1,6 @@
 { pkgs, ... }:
 let
+  src = {
   js     = ./hello/hello.js;
   php    = ./hello/hello.php;
   pl     = ./hello/hello.pl;
@@ -8,6 +9,7 @@ let
   c      = ./hello/hello.c;
   go     = ./hello/hello.go;
   java   = ./hello/Hello.java;
+  };
 
   helloAll = pkgs.writeShellApplication {
     name = "hello-all";
@@ -31,14 +33,14 @@ let
           printf '\033[1;31m✘\033[0m %s\n' "$path"
         fi
       }
-      check Node  node  ${js}    "node ${js}"
-      check PHP   php   ${php}   "php ${php}"
-      check Perl  perl  ${pl}    "perl ${pl}"
-      check Lua   lua   ${lua}   "lua ${lua}"
-      check Janet janet ${janet} "janet ${janet}"
-      check C     clang ${c}     "clang ${c} -o $tmp/c && $tmp/c"
-      check Go    go    ${go}    "go run ${go}"
-      check Java  java  ${java}  "java ${java}"
+      check Node  node  ${src.js}    "node ${src.js}"
+      check PHP   php   ${src.php}   "php ${src.php}"
+      check Perl  perl  ${src.pl}    "perl ${src.pl}"
+      check Lua   lua   ${src.lua}   "lua ${src.lua}"
+      check Janet janet ${src.janet} "janet ${src.janet}"
+      check C     clang ${src.c}     "clang ${src.c} -o $tmp/c && $tmp/c"
+      check Go    go    ${src.go}    "go run ${src.go}"
+      check Java  java  ${src.java}  "java ${src.java}"
       echo "$ok/$total"
     '';
   };
@@ -53,7 +55,7 @@ in
 
   programs.zsh = {
     enable = true;
-    shellAliases.nullpo = "cat ${./nullpo.aa}";
+    shellAliases.nullpo = "cat ${src../nullpo.aa}";
   };
 }
 
