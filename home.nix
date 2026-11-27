@@ -55,7 +55,7 @@ in
 
   programs.zsh = {
     enable = true;
-    shellAliases.nullpo = "cat ${src../nullpo.aa}";
+    shellAliases.nullpo = "cat ${./nullpo.aa}";
   };
 }
 
