@@ -1,2 +1,2 @@
 :- initialization(main, main).
-main :- format("Hello, World!~n").
+main :- format("hello, world~n").

@@ -46,7 +46,7 @@ let
         t1=$(date +%s%N)
         ms=$(( (t1 - t0) / 1000000 ))
         printf '%s\n' "$out"
-        if [ "$out" = "Hello, World!" ] && [[ "$path" == /nix/store/* ]]; then
+        if [ "$out" = "hello, world" ] && [[ "$path" == /nix/store/* ]]; then
           ok=$((ok+1))
           printf '\033[1;32m✔\033[0m %s ms  %s\n' "$ms" "$path"
         else

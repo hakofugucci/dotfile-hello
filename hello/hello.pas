@@ -1,1 +1,1 @@
-program H; begin writeln('Hello, World!'); end.
+program H; begin writeln('hello, world'); end.

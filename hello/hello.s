@@ -4,4 +4,4 @@ _main:
     add x0, x0, m@PAGEOFF
     b _puts
 m:
-    .asciz "Hello, World!"
+    .asciz "hello, world"
