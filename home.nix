@@ -12,7 +12,7 @@ let
         total=$((total+1))
         path=$(readlink -f "$(command -v "$bin")")
         out=$("$@" 2>&1 || true)
-        if [ "$out" = "Hello, World!" ] && [[ "$path" == /nix/store/* ]]; then
+        if [ "$out" = "hello, world" ] && [[ "$path" == /nix/store/* ]]; then
           ok=$((ok+1))
           printf '✔ %-8s %s\n' "$name" "$out"
         else
